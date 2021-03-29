@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String texto = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,8 +20,12 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async{
-          final result = await Navigator.pushNamed(context, '/new');
-          print(result);
+            final result = await Navigator.pushNamed(context, '/new');
+            print(result);
+            setState(() {
+              texto = result;
+            });
+
         },
 
         child: Icon(Icons.add),
@@ -70,7 +81,7 @@ class HomePage extends StatelessWidget {
                   letterSpacing: 2
               ),
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             Row(
               children: <Widget>[
                 Icon(
@@ -79,10 +90,11 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(width: 10.0),
                 Text(
-                  'theus.7@hotmail.com',
+                  texto,
                   style: TextStyle(
                     color: Colors.grey[400],
                     letterSpacing: 2.0,
+                    fontSize: 26,
                   ),
                 ),
               ],
